@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b4a35">
+<title>بيان أسماء قبيلة كود</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@700&family=Cormorant+Garamond:ital,wght@1,600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap">
+<style>
+/* تخطيط: عمود واحد — بيانات البيان، ثم بطاقات الأفراد، ثم معاينة الورقة A4 كما ستُصدَّر */
+:root{
+  --bg:#f3f5f2; --surface:#ffffff; --fg:#17211c; --muted:#5d6b63; --line:#d7ded8;
+  --accent:#0d6b4c; --accent-soft:#e1efe8; --warn:#a4570c; --warn-soft:#fbeedd; --ok:#1d7a4f;
+  --paper:#ffffff; --ink:#111111;
+  --bar:#0b4a35; --bar-2:#0d5a40; --on-bar:#f1f8f4; --bar-muted:#b9d6c8; --bar-warn:#ffd08a;
+  --ui:"IBM Plex Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+  --doc:"Noto Naskh Arabic", "Traditional Arabic", "Times New Roman", serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#101613; --surface:#18201c; --fg:#e6ece8; --muted:#9aa8a0; --line:#2b3630;
+  --accent:#4fc093; --accent-soft:#1c3329; --warn:#e7a35c; --warn-soft:#3a2a17; --ok:#5fd09c;
+  --bar:#0c2a1f; --bar-2:#123628; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#101613; --surface:#18201c; --fg:#e6ece8; --muted:#9aa8a0; --line:#2b3630;
+  --accent:#4fc093; --accent-soft:#1c3329; --warn:#e7a35c; --warn-soft:#3a2a17; --ok:#5fd09c;
+  --bar:#0c2a1f; --bar-2:#123628; color-scheme:dark}
+html{direction:rtl;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--ui);font-size:15px;line-height:1.6;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:20px 120px}
+.wrap{max-width:860px;margin:0 auto;display:grid;gap:22px}
+header h1{font-family:var(--doc);font-size:1.7rem;font-weight:700;margin:0;text-wrap:balance}
+header p{margin:4px 0 0;color:var(--muted);font-size:.92rem}
+section{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:grid;gap:14px;min-width:0}
+h2{margin:0;font-size:1.02rem;font-weight:700;display:flex;align-items:center;gap:8px}
+h2 small{font-weight:500;color:var(--muted);font-size:.85rem}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:560px){.grid2{grid-template-columns:1fr}}
+label{display:grid;gap:4px;font-size:.85rem;color:var(--muted);font-weight:500;min-width:0}
+input,textarea{font:inherit;font-size:16px;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:9px 11px;width:100%;box-sizing:border-box;direction:rtl}
+textarea{min-height:110px;resize:vertical;font-family:var(--doc);line-height:1.9}
+input:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.check{display:flex;align-items:center;gap:8px;font-size:.88rem;color:var(--fg)}
+.check input{width:18px;height:18px;accent-color:var(--accent)}
+
+.people{display:grid;gap:10px}
+.person{display:grid;grid-template-columns:34px minmax(0,2fr) minmax(0,1.3fr) minmax(158px,1.2fr) auto minmax(34px,auto);gap:8px;align-items:start;padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+.num{font-weight:700;color:var(--accent);text-align:center;padding-top:9px;font-variant-numeric:tabular-nums}
+.person input{background:var(--surface);text-align:center!important}
+.person label{text-align:center}
+.idhint{font-size:.74rem;margin-top:3px;min-height:1em}
+.idhint.bad{color:var(--warn)} .idhint.good{color:var(--ok)}
+.date{display:flex;direction:rtl;align-items:center;border:1px solid var(--line);border-radius:7px;background:var(--surface);height:42px;box-sizing:border-box;padding:0 6px;gap:2px}
+.date:focus-within{outline:2px solid var(--accent);outline-offset:1px}
+.date input{border:0;background:transparent;padding:0;text-align:center;direction:ltr;font-variant-numeric:tabular-nums;height:100%;min-width:0}
+.date input:focus-visible{outline:none;background:var(--accent-soft);border-radius:4px}
+.date .dd,.date .mm{flex:2}.date .yy{flex:3}
+.date .sl{color:var(--muted);font-weight:600;user-select:none}
+.seg{display:flex;border:1px solid var(--line);border-radius:7px;overflow:hidden;height:40px}
+.seg button{flex:1;min-width:52px;border:0;background:var(--surface);color:var(--muted);font:inherit;font-size:.88rem;padding:0 12px;cursor:pointer}
+.seg button+button{border-inline-start:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--accent);color:#fff;font-weight:600}
+.del{border:0;background:none;color:var(--muted);font-size:1.3rem;cursor:pointer;height:40px;border-radius:7px}
+.del:hover{color:var(--warn);background:var(--warn-soft)}
+.del.armed{font-size:.8rem;font-weight:700;color:#fff;background:var(--warn);padding:0 10px;white-space:nowrap}
+.delbox{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;background:var(--warn-soft);border:1px solid var(--warn);border-radius:8px;padding:10px;font-size:.88rem}
+.delbox b{color:var(--warn)}
+.delbox .delin{width:110px;height:36px;padding:0 8px}
+.delbox button{font:inherit;font-weight:600;font-size:.85rem;border-radius:7px;height:36px;padding:0 14px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
+.delbox .delgo{background:var(--warn);border-color:var(--warn);color:#fff}
+.delbox .delgo:disabled{opacity:.45;cursor:not-allowed}
+.rowmsg{grid-column:1/-1;font-size:.82rem;color:var(--warn);font-weight:600;text-align:center}
+.rowmsg:empty{display:none}
+.person input.bad,.date.bad,.seg.bad{border-color:var(--warn)!important;box-shadow:0 0 0 2px var(--warn-soft)}
+.date.bad{background:var(--warn-soft)}
+/* الآيباد والشاشات المتوسطة: صفّان */
+@media (max-width:900px){
+  .person{grid-template-columns:28px minmax(0,1fr) minmax(0,1fr) minmax(34px,auto);grid-template-areas:"n name id d" "n birth gen ."}
+  .person .num{grid-area:n}.person .f-name{grid-area:name}.person .f-id{grid-area:id}.person .f-birth{grid-area:birth}.person .seg{grid-area:gen;align-self:end;height:42px}.person .del{grid-area:d}
+}
+/* الجوال: كل حقل في سطر */
+@media (max-width:560px){
+  .person{grid-template-columns:24px minmax(0,1fr) minmax(34px,auto);grid-template-areas:"n name d" "n id id" "n birth birth" "n gen gen";gap:8px 6px;padding:10px 8px}
+  section{padding:14px 12px}
+  header h1{font-size:1.45rem}
+}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{font:inherit;font-weight:600;border-radius:8px;padding:10px 16px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--fg)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn:disabled{opacity:.6;cursor:wait}
+.stats{color:var(--muted);font-size:.88rem;font-variant-numeric:tabular-nums}
+.stats b{color:var(--fg)}
+
+.bar{position:fixed;inset:auto 0 0 0;background:linear-gradient(180deg,var(--bar-2),var(--bar));color:var(--on-bar);
+  box-shadow:0 -6px 18px rgba(6,40,28,.22);border-top:2px solid #c9a24a;
+  padding-block:12px calc(12px + env(safe-area-inset-bottom, 0px));
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));z-index:20}
+.bar .inner{max-width:860px;margin:0 auto;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.msg{font-size:.88rem;color:var(--bar-muted);display:flex;align-items:center;gap:8px;min-width:0}
+.msg::before{content:"!";flex:none;display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:#c9a24a;color:#0b2a1f;font-weight:700;font-size:.8rem}
+.msg.err{color:var(--bar-warn)}
+.bar .chip{white-space:pre;font-size:.82rem;color:var(--on-bar);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:4px 12px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bar .btn{border-color:rgba(255,255,255,.35);background:transparent;color:var(--on-bar)}
+.bar .btn:hover{background:rgba(255,255,255,.08)}
+.bar .btn.primary{background:#ffffff;border-color:#ffffff;color:#0b4a35;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+.bar .btn.primary:hover{background:#eef7f2}
+.bar .btn:focus-visible{outline:2px solid #c9a24a;outline-offset:2px}
+@media (max-width:600px){
+  .bar{padding-block:8px calc(8px + env(safe-area-inset-bottom, 0px))}
+  .bar .inner{gap:6px}
+  .msg{font-size:.78rem;line-height:1.45;width:100%}
+  .msg::before{width:17px;height:17px;font-size:.7rem}
+  .bar .row{width:100%;flex-wrap:nowrap;gap:8px}
+  .bar .chip{display:none}
+  .bar .btn{flex:1;padding:9px 10px}
+  .bar .btn.primary{flex:2}
+}
+
+.dt{white-space:nowrap;unicode-bidi:isolate;direction:rtl;font-variant-numeric:tabular-nums}
+.req{color:var(--warn);font-size:1rem;font-weight:700}
+.famerr{font-size:.8rem;color:var(--warn);font-weight:600;min-height:0}
+.famerr:empty{display:none}
+#family.bad{border-color:var(--warn);box-shadow:0 0 0 2px var(--warn-soft)}
+.fld{display:grid;gap:4px;min-width:0}
+.fld .lbl{font-size:.85rem;color:var(--muted);font-weight:500}
+.locked{background:var(--bg);border:1px dashed var(--line);border-radius:7px;padding:9px 11px;color:var(--fg);cursor:default;
+  -webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.locked.doc{font-family:var(--doc);line-height:2.1;font-size:1rem}
+.preview{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.privacy{margin:0;text-align:center;font-size:.88rem;color:var(--warn);background:var(--warn-soft);border-radius:8px;padding:10px 14px}
+.credit{text-align:center;color:var(--muted);font-family:var(--doc);font-size:1rem;font-weight:600;padding-block:4px 8px;display:grid;gap:2px;justify-items:center}
+.credit .sig{font-family:"Cormorant Garamond","Georgia",serif;font-style:italic;font-size:1.25rem;font-weight:600;color:var(--accent);letter-spacing:.06em}
+.preview{overflow:hidden;background:var(--bg);border-radius:8px;padding:12px;display:grid;gap:12px;justify-items:center}
+.pv-page{box-shadow:0 1px 6px rgba(0,0,0,.18);overflow:hidden}
+
+/* ورقة A4 عند 96dpi */
+.sheet{width:794px;height:1123px;box-sizing:border-box;padding:46px 44px 40px;background:var(--paper);color:var(--ink);
+  font-family:var(--doc);direction:rtl;display:flex;flex-direction:column;gap:6px;transform-origin:top right}
+.sheet .t{font-size:19px;font-weight:700;margin:0;text-align:center}
+.sheet .rule{height:4px;border-top:2px solid var(--ink);border-bottom:1px solid var(--ink);margin:6px 0 10px}
+.sheet .p{font-size:14.5px;line-height:1.95;margin:0 0 12px;text-align:right;white-space:pre-wrap}
+.sheet table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13.5px;border:1.5px solid var(--ink)}
+.sheet th,.sheet td{border:1px solid #3a3a3a;text-align:center;padding:0 4px;height:30px;overflow:hidden;white-space:nowrap}
+.sheet th{font-weight:700;height:26px;font-size:13.5px;background:#e6ece8}
+.sheet tbody tr:nth-child(even) td{background:#f5f8f6}
+.sheet td.no{font-weight:700}
+.sheet td.nm{text-align:center;font-weight:600}
+.sheet .sum{display:flex;margin-top:14px;border:1.5px solid var(--ink);font-size:14px}
+.sheet .sum div{flex:1;text-align:center;padding:7px 4px;border-inline-start:1px solid #3a3a3a}
+.sheet .sum div:first-child{border-inline-start:0;background:#e6ece8;font-weight:700}
+.sheet .sum b{margin-inline-start:6px}
+.sheet .dua{margin-top:30px;text-align:center;font-family:"Aref Ruqaa", var(--doc);font-weight:700;font-size:25px;color:#0b4a35;line-height:1.6}
+.sheet .dua::before,.sheet .dua::after{content:"";display:inline-block;width:46px;height:1px;background:#0b4a35;vertical-align:middle;margin:0 14px;opacity:.55}
+.sheet .foot{margin-top:auto;border-top:1px solid #9aa39d;padding-top:6px;display:flex;justify-content:space-between;font-size:11.5px;color:#444}
+.sheet .mk{display:inline-block;width:5px;height:10px;border:solid var(--ink);border-width:0 2px 2px 0;transform:rotate(45deg);margin-bottom:3px}
+
+#stage{position:absolute;top:0;left:-12000px;width:794px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <h1>بيان أسماء قبيلة كود</h1>
+    <p>قم بتعبئة البيانات، ثم صدِّر ملف PDF مطابقًا للنموذج الورقي، بصفحة A4 عربية من اليمين إلى اليسار.</p>
+  </header>
+
+  <section>
+    <h2>رأس البيان</h2>
+    <div class="grid2">
+      <label><span>بيان بأسماء (الأسرة / العائلة) <span class="req" aria-hidden="true">*</span></span>
+        <input id="family" placeholder="مثال: أسرة آل فلان" required aria-required="true">
+        <span class="famerr" id="famerr"></span>
+      </label>
+      <div class="fld"><span class="lbl">من قبيلة</span>
+        <div class="locked" id="tribe"></div>
+      </div>
+    </div>
+    <div class="fld"><span class="lbl">نص الخطاب</span>
+      <div class="locked doc" id="intro"></div>
+    </div>
+    <label class="check"><input type="checkbox" id="hindi" checked> كتابة الأرقام في الملف بالأرقام العربية (١٢٣)</label>
+  </section>
+
+  <section>
+    <h2>الأفراد <small id="count"></small></h2>
+    <div class="people" id="people"></div>
+    <div class="row">
+      <button class="btn" id="add1">+ إضافة فرد</button>
+      <button class="btn" id="add5">+ خمسة صفوف</button>
+      <span class="stats" id="stats"></span>
+    </div>
+  </section>
+
+  <section>
+    <h2>معاينة الملف <small id="pages"></small></h2>
+    <div class="preview" id="preview"></div>
+  </section>
+
+  <p class="privacy">لا تُحفظ أيُّ بيانات تُدخِلها في هذه الصفحة، ولا تُرسَل إلى أي جهة؛ وتُمسح تلقائيًا بانتهاء التصفّح.</p>
+  <footer class="credit">لا تنسَوا مُعِدَّه من صالحِ دعائكم<span class="sig" dir="ltr">Binsehman</span></footer>
+</div>
+
+<div class="bar"><div class="inner">
+  <span class="msg" id="msg">تنبيه: البيانات لا تُحفظ، وتُمسح بإغلاق الصفحة. صدِّر ملف PDF قبل الخروج.</span>
+  <div class="row">
+    <span class="chip" id="barcount"></span>
+    <button class="btn" id="clear">مسح الكل</button>
+    <button class="btn primary" id="export">تصدير PDF</button>
+  </div>
+</div></div>
+
+<div id="stage" aria-hidden="true"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+const ROWS_PER_PAGE = 30;
+const KEY = "bayan-kood-v1";
+const DEF = {
+  family:"", tribe:"كود",
+  intro:"بناءً على خطابِ رئيسِ مركزِ الصفية رقم (١٦٨) وتاريخ {{07/05/1448}}، الموجَّهِ إلى شيخِ قبيلةِ كود، المتضمِّنِ طلبَ حصرِ أسماءِ قبيلةِ كود؛ وذلك تنفيذًا للأمرِ السَّامي الكريمِ رقم (٣٦٩/م) وتاريخ {{07/01/1428}}، القاضي بمنحِ قبيلةِ كود؛ تمهيدًا لتخطيطِ الأراضي السَّكنيَّةِ بمركزِ الصفية.",
+  note:"ملاحظة: تعبئة النموذج على الكمبيوتر مع تحرّي الدقة وتسليم البيان لمكتب الشيخ بعد تعبئته.",
+  hindi:true,
+  people:[]
+};
+const blank = () => ({name:"", id:"", birth:"", gender:""});
+// الميلاد يُحفظ بصيغة يوم/شهر/سنة
+const bparts = s => { const a = String(s||"").split("/"); return [a[0]||"", a[1]||"", a[2]||""] };
+let state;
+try { state = JSON.parse(sessionStorage.getItem(KEY)) } catch(e) {}
+if (!state || !Array.isArray(state.people)) state = structuredClone(DEF);
+while (state.people.length < 3) state.people.push(blank());
+// النصوص الثابتة لا تُحفظ ولا تُعدَّل
+state.tribe = DEF.tribe; state.intro = DEF.intro; state.note = DEF.note;
+// تحويل المسودات القديمة (سنة/شهر/يوم) إلى (يوم/شهر/سنة)
+state.people.forEach(p => { const m = String(p.birth||"").match(/^(\d{4})\/(\d{1,2})\/(\d{1,2})$/); if (m) p.birth = `${m[3]}/${m[2]}/${m[1]}` });
+
+const $ = s => document.querySelector(s);
+const toHindi = s => String(s).replace(/[0-9]/g, d => "٠١٢٣٤٥٦٧٨٩"[d]);
+const toLatin = s => String(s).replace(/[٠-٩]/g, d => "٠١٢٣٤٥٦٧٨٩".indexOf(d)).replace(/[۰-۹]/g, d => "۰۱۲۳۴۵۶۷۸۹".indexOf(d));
+const digits = s => state.hindi ? toHindi(s) : toLatin(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function save(){ try { sessionStorage.setItem(KEY, JSON.stringify(state)) } catch(e) {} }
+try { localStorage.removeItem(KEY) } catch(e) {}
+
+function idStatus(v){
+  const d = toLatin(v).replace(/\D/g,"");
+  if (!d) return ["",""];
+  if (d.length !== 10) return ["bad", `${d.length} من ١٠ أرقام`];
+  if (!/^[12]/.test(d)) return ["bad","يبدأ رقم الهوية بـ 1 أو 2"];
+  let sum = 0;
+  for (let i = 0; i < 10; i++){ let n = +d[i]; if (i % 2 === 0){ n *= 2; if (n > 9) n -= 9 } sum += n }
+  return sum % 10 === 0 ? ["good","رقم صحيح البنية"] : ["bad","راجع الرقم؛ لا يطابق خوارزمية الهوية"];
+}
+
+const hasData = p => !!(p.name.trim() || p.id.trim() || p.birth.trim() || p.gender);
+function filled(){ return state.people.filter(hasData) }
+
+/* ---------- الحقول الإلزامية ---------- */
+const LBL = {name:"الاسم", id:"رقم الهوية (١٠ أرقام)", date:"تاريخ الميلاد كاملًا", gender:"الجنس"};
+const touched = new WeakMap();
+const touch = (p, keys) => { const s = touched.get(p) || new Set(); keys.forEach(k => s.add(k)); touched.set(p, s) };
+function rowErrs(p){
+  const e = [];
+  if (!p.name.trim()) e.push("name");
+  if (!/^[12]\d{9}$/.test(p.id)) e.push("id");
+  const [d,m,y] = bparts(p.birth);
+  if (!(+d >= 1 && +d <= 30 && +m >= 1 && +m <= 12 && /^\d{4}$/.test(y))) e.push("date");
+  if (!p.gender) e.push("gender");
+  return e;
+}
+function applyErrs(card){
+  const p = state.people[+card.dataset.i]; const t = touched.get(p) || new Set();
+  const errs = hasData(p) ? rowErrs(p).filter(k => t.has(k)) : [];
+  card.querySelector('[data-k="name"]').classList.toggle("bad", errs.includes("name"));
+  card.querySelector('[data-k="id"]').classList.toggle("bad", errs.includes("id"));
+  card.querySelector(".date").classList.toggle("bad", errs.includes("date"));
+  card.querySelector(".seg").classList.toggle("bad", errs.includes("gender"));
+  card.querySelector(".rowmsg").textContent = errs.length ? "حقول إلزامية ناقصة: " + errs.map(k => LBL[k]).join("، ") : "";
+}
+
+/* ---------- واجهة الإدخال ---------- */
+function renderPeople(){
+  const box = $("#people");
+  box.innerHTML = state.people.map((p,i) => {
+    const [cls,txt] = idStatus(p.id);
+    return `<div class="person" data-i="${i}">
+      <div class="num">${toHindi(i+1)}</div>
+      <label class="f-name">الاسم<input id="n${i}" data-k="name" value="${esc(p.name)}" placeholder="الاسم رباعيًا"></label>
+      <label class="f-id">الهوية الوطنية<input id="d${i}" data-k="id" value="${esc(p.id)}" inputmode="numeric" maxlength="10" placeholder="10 أرقام" style="direction:ltr;text-align:right"><span class="idhint ${cls}">${txt}</span></label>
+      <label class="f-birth">الميلاد<span class="date">
+        <input id="bd${i}" class="dd" data-k="bd" data-max="2" value="${esc(bparts(p.birth)[0])}" inputmode="numeric" placeholder="يوم" aria-label="اليوم">
+        <span class="sl">/</span>
+        <input id="bm${i}" class="mm" data-k="bm" data-max="2" value="${esc(bparts(p.birth)[1])}" inputmode="numeric" placeholder="شهر" aria-label="الشهر">
+        <span class="sl">/</span>
+        <input id="by${i}" class="yy" data-k="by" data-max="4" value="${esc(bparts(p.birth)[2])}" inputmode="numeric" placeholder="سنة" aria-label="السنة">
+      </span></label>
+      <div class="seg" role="group" aria-label="الجنس">
+        <button type="button" data-g="m" aria-pressed="${p.gender==="m"}">ذكر</button>
+        <button type="button" data-g="f" aria-pressed="${p.gender==="f"}">أنثى</button>
+      </div>
+      <button class="del" type="button" aria-label="حذف الصف">×</button>
+      <div class="rowmsg" aria-live="polite"></div>
+      <div class="delbox" hidden>
+        <span>لتأكيد حذف الفرد رقم ${toHindi(i+1)} اكتب كلمة <b>حذف</b></span>
+        <input id="x${i}" class="delin" autocomplete="off" placeholder="حذف" aria-label="اكتب حذف للتأكيد">
+        <button type="button" class="delgo" disabled>حذف الفرد</button>
+        <button type="button" class="delno">إلغاء</button>
+      </div>
+    </div>`;
+  }).join("");
+  box.querySelectorAll(".person").forEach(applyErrs);
+}
+
+$("#people").addEventListener("input", e => {
+  const k = e.target.dataset.k; if (!k) return;
+  const card = e.target.closest(".person"); const i = +card.dataset.i;
+  let v = e.target.value;
+  if (k === "bd" || k === "bm" || k === "by"){
+    const ins = [...card.querySelectorAll(".date input")];
+    const raw = toLatin(v);
+    // لصق تاريخ كامل في أي خانة
+    const full = raw.match(/^\s*(\d{1,2})\D+(\d{1,2})\D+(\d{4})\s*$/);
+    if (full){ ins[0].value = full[1].padStart(2,"0"); ins[1].value = full[2].padStart(2,"0"); ins[2].value = full[3]; ins[2].focus() }
+    else {
+      const max = +e.target.dataset.max; let d = raw.replace(/\D/g,"").slice(0,max);
+      const pos = ins.indexOf(e.target);
+      let carry = "";
+      // رقم واحد مقبول: إن كان الرقمان معًا يومًا أو شهرًا غير ممكن، يبقى الأول وينتقل الثاني للخانة التالية
+      if (k !== "by" && d.length === 2){
+        const lim = k === "bd" ? 30 : 12;
+        if (+d > lim || (+d === 0 && d[0] === "0" && d[1] === "0")){ carry = d[1]; d = d[0] }
+      }
+      if (k === "bd" && d.length === 1 && +d > 3) d = "0" + d;
+      if (k === "bm" && d.length === 1 && +d > 1) d = "0" + d;
+      if (d !== e.target.value) e.target.value = d;
+      const noAdv = e.target.dataset.noadv; delete e.target.dataset.noadv;
+      if (!noAdv && (d.length === max || carry) && pos < 2){
+        const nx = ins[pos+1]; nx.focus();
+        if (carry){ nx.value = carry; nx.dispatchEvent(new Event("input",{bubbles:true})) } else nx.select();
+      }
+    }
+    state.people[i].birth = ins[0].value || ins[1].value || ins[2].value ? `${ins[0].value}/${ins[1].value}/${ins[2].value}` : "";
+    applyErrs(card); changed(); return;
+  }
+  if (k === "id"){ v = toLatin(v).replace(/\D/g,"").slice(0,10); if (v !== e.target.value) e.target.value = v;
+    const [cls,txt] = idStatus(v); const h = card.querySelector(".idhint"); h.className = "idhint " + cls; h.textContent = txt; }
+  state.people[i][k] = v; applyErrs(card); changed();
+});
+// عند مغادرة خانة اليوم أو الشهر برقم واحد يُكمَل بصفر (١ ← ٠١)
+$("#people").addEventListener("focusout", e => {
+  const k = e.target.dataset && e.target.dataset.k;
+  if ((k === "bd" || k === "bm") && /^[1-9]$/.test(e.target.value)){
+    e.target.value = "0" + e.target.value; e.target.dataset.noadv = "1"; e.target.dispatchEvent(new Event("input",{bubbles:true}));
+  }
+  // تنبيه فوري عند مغادرة حقل ناقص
+  const card = e.target.closest && e.target.closest(".person"); if (!card) return;
+  const p = state.people[+card.dataset.i]; if (!p) return;
+  const to = e.relatedTarget;
+  if (k === "name" || k === "id") touch(p, [k]);
+  const dt = e.target.closest(".date");
+  if (dt && !(to && dt.contains(to))) touch(p, ["date"]);
+  if (!(to && card.contains(to))) touch(p, ["name","id","date","gender"]);
+  applyErrs(card);
+});
+/* لا يُنتقل إلى فرد آخر قبل إكمال الفرد الحالي */
+let activeIdx = null;
+function focusMissing(i){
+  const card = document.querySelector(`.person[data-i="${i}"]`); if (!card) return;
+  const first = rowErrs(state.people[i])[0];
+  const el = first === "name" ? card.querySelector('[data-k="name"]') : first === "id" ? card.querySelector('[data-k="id"]')
+    : first === "date" ? [...card.querySelectorAll(".date input")].find(x => !x.value || (x.dataset.k === "by" && x.value.length < 4)) || card.querySelector(".date input")
+    : card.querySelector(".seg button");
+  card.scrollIntoView({block:"center", behavior:"smooth"});
+  if (el) el.focus({preventScroll:true});
+}
+function blockedBy(target){
+  if (activeIdx === null || activeIdx === target) return null;
+  const p = state.people[activeIdx];
+  return p && hasData(p) && rowErrs(p).length ? activeIdx : null;
+}
+function stopAt(i){
+  const p = state.people[i]; touch(p, ["name","id","date","gender"]);
+  const card = document.querySelector(`.person[data-i="${i}"]`); applyErrs(card);
+  setMsg(`أكمل بيانات الفرد رقم ${toHindi(i+1)} أولًا: ${rowErrs(p).map(k => LBL[k]).join("، ")}.`, true);
+  card.animate && card.animate([{transform:"translateX(0)"},{transform:"translateX(-6px)"},{transform:"translateX(6px)"},{transform:"translateX(0)"}], {duration:260});
+  focusMissing(i);
+}
+$("#people").addEventListener("focusin", e => {
+  const card = e.target.closest(".person"); if (!card) return;
+  if (famRequired()) return;
+  const i = +card.dataset.i, b = blockedBy(i);
+  if (b !== null){ stopAt(b); return }
+  if (activeIdx !== i){ activeIdx = i; setMsg("تنبيه: البيانات لا تُحفظ، وتُمسح بإغلاق الصفحة. صدِّر ملف PDF قبل الخروج.") }
+});
+const isDelWord = v => v.replace(/[ً-ْـ\s]/g,"") === "حذف";
+$("#people").addEventListener("input", e => {
+  if (!e.target.classList.contains("delin")) return;
+  e.target.closest(".delbox").querySelector(".delgo").disabled = !isDelWord(e.target.value);
+});
+$("#people").addEventListener("keydown", e => {
+  if (e.target.classList && e.target.classList.contains("delin")){
+    if (e.key === "Enter"){ e.preventDefault(); const go = e.target.closest(".delbox").querySelector(".delgo"); if (!go.disabled) go.click() }
+    if (e.key === "Escape"){ e.target.closest(".delbox").querySelector(".delno").click() }
+  }
+});
+$("#people").addEventListener("keydown", e => {
+  if (!e.target.closest || !e.target.closest(".date")) return;
+  const ins = [...e.target.closest(".date").querySelectorAll("input")], pos = ins.indexOf(e.target);
+  if (e.key === "Backspace" && e.target.value === "" && pos > 0){ e.preventDefault(); const p = ins[pos-1]; p.focus(); p.value = p.value.slice(0,-1); p.dispatchEvent(new Event("input",{bubbles:true})) }
+  if ((e.key === "/" || e.key === "-" || e.key === ".") ){ e.preventDefault(); if (pos < 2){ const t = e.target; if (t.value.length === 1) { t.value = "0" + t.value; t.dispatchEvent(new Event("input",{bubbles:true})) } ins[pos+1].focus() } }
+});
+$("#people").addEventListener("click", e => {
+  const card = e.target.closest(".person"); if (!card) return; const i = +card.dataset.i;
+  if (!state.family.trim()){ e.preventDefault(); famRequired(); return }
+  const blk = blockedBy(i); if (blk !== null){ e.preventDefault(); stopAt(blk); return }
+  activeIdx = i;
+  if (e.target.dataset.g){ const g = e.target.dataset.g;
+    state.people[i].gender = state.people[i].gender === g ? "" : g;
+    card.querySelectorAll(".seg button").forEach(b => b.setAttribute("aria-pressed", b.dataset.g === state.people[i].gender));
+    touch(state.people[i], ["gender"]); applyErrs(card); changed();
+  } else if (e.target.classList.contains("delno")){
+    const box = card.querySelector(".delbox"); box.hidden = true; card.querySelector(".del").focus();
+  } else if (e.target.classList.contains("del") && hasData(state.people[i])){
+    const box = card.querySelector(".delbox"), inp = box.querySelector(".delin");
+    box.hidden = !box.hidden; inp.value = ""; box.querySelector(".delgo").disabled = true;
+    if (!box.hidden) inp.focus();
+  } else if (e.target.classList.contains("del") || (e.target.classList.contains("delgo") && isDelWord(card.querySelector(".delin").value))){
+    state.people.splice(i,1); if (!state.people.length) state.people.push(blank());
+    activeIdx = null; renderPeople(); changed();
+  }
+});
+$("#add1").onclick = () => { if (activeIdx !== null && blockedBy(-1) !== null){ stopAt(activeIdx); return } state.people.push(blank()); renderPeople(); changed(); document.getElementById("n"+(state.people.length-1)).focus() };
+$("#add5").onclick = () => { if (activeIdx !== null && blockedBy(-1) !== null){ stopAt(activeIdx); return } for (let k=0;k<5;k++) state.people.push(blank()); renderPeople(); changed() };
+
+$("#family").value = state.family;
+$("#family").addEventListener("input", () => { state.family = $("#family").value; if (state.family.trim()) famMark(false); changed() });
+$("#family").addEventListener("blur", () => { if (!state.family.trim()) famMark(true) });
+function famMark(on){
+  $("#family").classList.toggle("bad", on);
+  $("#famerr").textContent = on ? "اكتب اسم الأسرة أو العائلة أولًا." : "";
+}
+function famRequired(){
+  if (state.family.trim()) return false;
+  famMark(true); setMsg("اسم الأسرة أو العائلة إلزامي، اكتبه أولًا.", true);
+  $("#family").scrollIntoView({block:"center", behavior:"smooth"}); $("#family").focus({preventScroll:true});
+  return true;
+}
+$("#tribe").textContent = DEF.tribe;
+const renderIntro = () => { state.hindi = $("#hindi").checked; $("#intro").innerHTML = richText(DEF.intro) };
+renderIntro();
+$("#hindi").addEventListener("change", renderIntro);
+// منع النسخ من النصوص الثابتة والمعاينة
+document.querySelectorAll(".locked, #preview").forEach(el => {
+  ["copy","cut","contextmenu","selectstart","dragstart"].forEach(ev => el.addEventListener(ev, e => e.preventDefault()));
+});
+$("#hindi").checked = state.hindi;
+$("#hindi").addEventListener("change", e => { state.hindi = e.target.checked; changed() });
+
+let clearArmed = false;
+$("#clear").onclick = () => {
+  if (!clearArmed){ clearArmed = true; $("#clear").textContent = "اضغط مرة أخرى للتأكيد"; setTimeout(() => { clearArmed = false; $("#clear").textContent = "مسح الكل" }, 3000); return }
+  clearArmed = false; $("#clear").textContent = "مسح الكل";
+  state = structuredClone(DEF); while (state.people.length < 3) state.people.push(blank());
+  $("#family").value = ""; $("#hindi").checked = true;
+  renderPeople(); changed(); setMsg("تم مسح البيانات.");
+};
+
+/* ---------- بناء الورقة ---------- */
+// التاريخ الهجري: اليوم يمينًا ثم الشهر ثم السنة ويليها هـ، كتلة واحدة لا تنكسر
+function richText(s){
+  return esc(s).replace(/\{\{(\d+)\/(\d+)\/(\d+)\}\}/g, (_,d,m,y) =>
+    `<span class="dt">${[d,m,y].map(x => `<bdi>${digits(x)}</bdi>`).join("/")}<span>هـ</span></span>`);
+}
+function birthCell(s){
+  const [d,m,y] = bparts(s); if (!d && !m && !y) return "";
+  return [d,m,y].map(x => `<bdi>${esc(digits(x))}</bdi>`).join("/");
+}
+function sheetsHTML(){
+  const rows = filled();
+  // الصفحة الأولى أقل صفوفًا لأنها تحمل نص الخطاب
+  const FIRST = 21, NEXT = 26;
+  const chunks = [rows.slice(0, FIRST)];
+  for (let s = FIRST; s < rows.length; s += NEXT) chunks.push(rows.slice(s, s + NEXT));
+  const pages = chunks.length;
+  const fam = state.family.trim() ? esc(state.family.trim()) : "........................";
+  const tribe = esc(state.tribe.trim() || "........");
+  const m = rows.filter(p => p.gender === "m").length, f = rows.filter(p => p.gender === "f").length;
+  let out = [], n = 0;
+  for (let pg = 0; pg < pages; pg++){
+    let body = "";
+    for (const p of chunks[pg]){
+      n++;
+      body += `<tr><td class="no">${digits(n)}</td><td class="nm">${esc(p.name)}</td><td>${esc(digits(p.id))}</td><td>${birthCell(p.birth)}</td><td>${p.gender==="m"?'<span class="mk"></span>':""}</td><td>${p.gender==="f"?'<span class="mk"></span>':""}</td></tr>`;
+    }
+    if (!chunks[pg].length) body = `<tr><td colspan="6" style="color:#777">لم تُضَف أسماء بعد</td></tr>`;
+    const last = pg === pages - 1;
+    out.push(`<div class="sheet">
+      <p class="t">${pg ? "تابع: " : ""}بيان بأسماء ${fam} من قبيلة ${tribe}</p>
+      <div class="rule"></div>
+      ${pg===0 ? `<p class="p">${richText(state.intro)}</p>` : ""}
+      <table>
+        <colgroup><col style="width:6%"><col style="width:37%"><col style="width:22%"><col style="width:17%"><col style="width:9%"><col style="width:9%"></colgroup>
+        <thead><tr><th rowspan="2">م</th><th rowspan="2">الاسم</th><th rowspan="2">الهوية الوطنية</th><th rowspan="2">الميلاد</th><th colspan="2">الجنس</th></tr>
+        <tr><th>ذكر</th><th>أنثى</th></tr></thead>
+        <tbody>${body}</tbody>
+      </table>
+      ${last && rows.length ? `<div class="sum"><div>الإجمالي<b>${digits(rows.length)}</b></div><div>الذكور<b>${digits(m)}</b></div><div>الإناث<b>${digits(f)}</b></div></div>` : ""}
+      ${last && rows.length ? `<p class="dua">لا تنسَوا مُعِدَّه من صالحِ دعائكم</p>` : ""}
+      <div class="foot"><span>بيان أسماء قبيلة ${tribe}</span><span>صفحة ${digits(pg+1)} من ${digits(pages)}</span></div>
+    </div>`);
+  }
+  return out;
+}
+
+function renderPreview(){
+  const pv = $("#preview"); const pages = sheetsHTML();
+  const w = Math.min(pv.clientWidth - 24, 794); const s = w / 794;
+  pv.innerHTML = pages.map(h => `<div class="pv-page" style="width:${794*s}px;height:${1123*s}px"><div style="transform:scale(${s});transform-origin:top right;width:794px">${h}</div></div>`).join("");
+  pv.querySelectorAll(".pv-page > div").forEach(d => d.style.marginRight = "0");
+  const rows = filled(), m = rows.filter(p=>p.gender==="m").length, f = rows.filter(p=>p.gender==="f").length;
+  $("#count").textContent = `(${toHindi(rows.length)})`;
+  $("#barcount").textContent = rows.length
+    ? `عدد الأفراد: ${toHindi(rows.length)}  |  صفحات الملف: ${toHindi(pages.length)}`
+    : "لم يُدخَل أي فرد بعد";
+  $("#stats").innerHTML = `ذكور <b>${toHindi(m)}</b> · إناث <b>${toHindi(f)}</b>`;
+  $("#pages").textContent = `${toHindi(pages.length)} ${pages.length===1?"صفحة":"صفحات"}`;
+}
+
+let t; function changed(){ save(); clearTimeout(t); t = setTimeout(renderPreview, 150) }
+window.addEventListener("resize", () => { clearTimeout(t); t = setTimeout(renderPreview, 150) });
+
+function setMsg(s, err){ const m = $("#msg"); m.textContent = s; m.className = "msg" + (err ? " err" : "") }
+
+/* ---------- التصدير ---------- */
+$("#export").onclick = async () => {
+  if (famRequired()) return;
+  const rows = filled();
+  if (!rows.length){ setMsg("أضف فردًا واحدًا على الأقل قبل التصدير.", true); return }
+  rows.forEach(p => touch(p, ["name","id","date","gender"]));
+  renderPeople();
+  const bad = state.people.findIndex(p => hasData(p) && rowErrs(p).length);
+  if (bad > -1){
+    const p = state.people[bad], first = rowErrs(p)[0];
+    setMsg(`الفرد رقم ${toHindi(bad+1)} تنقصه بيانات إلزامية: ${rowErrs(p).map(k => LBL[k]).join("، ")}.`, true);
+    focusMissing(bad);
+    return;
+  }
+  const btn = $("#export"); btn.disabled = true; setMsg("جارٍ إنشاء الملف…");
+  const stage = $("#stage");
+  try {
+    if (document.fonts) await document.fonts.ready;
+    stage.innerHTML = sheetsHTML().join("");
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({ unit:"mm", format:"a4", orientation:"portrait", compress:true });
+    const sheets = stage.querySelectorAll(".sheet");
+    for (let i = 0; i < sheets.length; i++){
+      const canvas = await html2canvas(sheets[i], { scale:2.5, backgroundColor:"#ffffff", useCORS:true, logging:false, windowWidth:794 });
+      if (i) pdf.addPage();
+      pdf.addImage(canvas.toDataURL("image/jpeg", 0.93), "JPEG", 0, 0, 210, 297);
+    }
+    const name = `بيان ${state.family.trim() || "أسماء"} - قبيلة ${state.tribe.trim() || ""}.pdf`.replace(/[\\/:*?"<>|]/g,"").replace(/\s+/g," ");
+    const blob = pdf.output("blob");
+    const downloads = window.claude?.use ? await window.claude.use("downloads") : undefined;
+    if (downloads){
+      try { await downloads.save({ filename:name, data:blob }); setMsg("تم حفظ الملف.") }
+      catch(e){ setMsg(e && e.code === "declined" ? "أُلغي الحفظ." : "تعذّر حفظ الملف هنا: " + (e && e.message || ""), e && e.code !== "declined") }
+    } else if (downloads === null){
+      setMsg("الحفظ غير متاح في هذا العرض. افتح الصفحة في claude.ai ثم أعد المحاولة.", true);
+    } else {
+      pdf.save(name); setMsg("تم تنزيل الملف.");
+    }
+  } catch(e){
+    setMsg("تعذّر إنشاء الملف: " + (e && e.message || e), true);
+  } finally { stage.innerHTML = ""; btn.disabled = false }
+};
+
+// مساحة أسفل الصفحة بقدر ارتفاع الشريط الثابت فلا يغطي المحتوى
+const padForBar = () => { document.body.style.paddingBottom = (document.querySelector(".bar").offsetHeight + 24) + "px" };
+if (window.ResizeObserver) new ResizeObserver(padForBar).observe(document.querySelector(".bar")); else window.addEventListener("resize", padForBar);
+padForBar();
+renderPeople(); renderPreview();
+if (document.fonts) document.fonts.ready.then(renderPreview);
+</script>
+
+</body>
+</html>
